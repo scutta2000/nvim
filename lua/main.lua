@@ -103,14 +103,115 @@ function M.setup()
     use {
       'nvim-treesitter/nvim-treesitter',
       run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+      config = function()
+        require("config.treesitter").setup()
+      end,
+      requires = {
+        { "nvim-treesitter/nvim-treesitter-textobjects" },
+      },
     }
 
     --Telescope
     use {
       'nvim-telescope/telescope.nvim',
       tag = '0.1.0',
-      requires = { {'nvim-lua/plenary.nvim'} }
+      requires = { {'nvim-lua/plenary.nvim'} },
+      config = function ()
+        require('telescope').setup()
+      end,
     }
+
+    --File tree
+    use {
+     "kyazdani42/nvim-tree.lua",
+     requires = {
+       "kyazdani42/nvim-web-devicons",
+     },
+     cmd = { "NvimTreeToggle", "NvimTreeClose" },
+       config = function()
+         require("config.nvimtree").setup()
+       end,
+    }
+
+    --Leap
+    use {
+      "ggandor/leap.nvim",
+      config = function()
+        require("leap").set_default_keymaps(true)
+      end,
+    }
+
+    -- Completion
+    use {
+      "ms-jpq/coq_nvim",
+      branch = "coq",
+      event = "InsertEnter",
+      opt = true,
+      run = ":COQdeps",
+      config = function()
+        require("config.coq").setup()
+      end,
+      requires = {
+        { "ms-jpq/coq.artifacts", branch = "artifacts" },
+        { "ms-jpq/coq.thirdparty", branch = "3p", module = "coq_3p" },
+      },
+      disable = false,
+    }
+    use {
+      "hrsh7th/nvim-cmp",
+      event = "InsertEnter",
+      opt = true,
+      config = function()
+        require("config.cmp").setup()
+      end,
+      wants = { "LuaSnip" },
+      requires = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-nvim-lua",
+        "ray-x/cmp-treesitter",
+        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-calc",
+        "f3fora/cmp-spell",
+        "hrsh7th/cmp-emoji",
+        {
+          "L3MON4D3/LuaSnip",
+          wants = "friendly-snippets",
+          config = function()
+            require("config.luasnip").setup()
+          end,
+        },
+        "rafamadriz/friendly-snippets",
+        disable = false,
+      },
+    }
+
+    -- Auto pairs
+    use {
+      "windwp/nvim-autopairs",
+      wants = "nvim-treesitter",
+      event = "InsertEnter",
+      module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
+      config = function()
+        require("config.autopairs").setup()
+      end,
+    }
+
+    -- Auto html tag
+    use {
+      "windwp/nvim-ts-autotag",
+      wants = "nvim-treesitter",
+      event = "InsertEnter",
+      config = function()
+        require("nvim-ts-autotag").setup { enable = true }
+      end,
+    }
+
+     -- LSP and completion
+     use { 'neovim/nvim-lspconfig' }
+     use { 'nvim-lua/completion-nvim' }
+
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
       require("packer").sync()

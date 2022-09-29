@@ -2,10 +2,6 @@ local M = {}
 
 function M.setup()
   local gps = require "nvim-navic"
-  print (gps.get_location())
-  print (gps.is_available())
-    
-  
 
   require("lualine").setup {
     options = {

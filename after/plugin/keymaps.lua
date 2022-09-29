@@ -40,3 +40,6 @@ keymap("n", "<Down>", ":resize +1<CR>", default_opts)
 
 -- Exit visual with esc
 keymap("v", "<ESC>", "v", default_opts)
+
+--Add new line
+keymap("n", "<C-j>", "o<ESC>", default_opts)

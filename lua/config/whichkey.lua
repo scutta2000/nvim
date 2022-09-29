@@ -3,8 +3,7 @@ local M = {}
 function M.setup()
   local whichkey = require "which-key"
  
-  local conf = {
-    window = {
+  local conf = { window = {
       border = "single", -- none, single, double, shadow
       position = "bottom", -- bottom, top
     },
@@ -41,6 +40,13 @@ function M.setup()
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
+    },
+
+    o = {
+      name = "Open",
+      f = {"<cmd>Telescope find_files<cr>", "File"},
+      t = { "<cmd>NvimTreeToggle<cr>", "File tree" },
+      b = {"<cmd>Telescope buffers<cr>", "Buffers"},
     },
   }
  
