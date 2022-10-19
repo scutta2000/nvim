@@ -21,11 +21,18 @@ function M.setup()
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
+    ["f"] = {"<cmd>Telescope live_grep <cr>", "File"},
  
     b = {
       name = "Buffer",
       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
+    },
+
+    l = {
+      name = "Language protocol",
+      f = {"<Plug>(coc-codeaction)", "Fix"},
+      j = {"<Plug>(coc-definition)", "Jump to definition"}, 
     },
  
     z = {

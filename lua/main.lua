@@ -209,8 +209,10 @@ function M.setup()
     }
 
      -- LSP and completion
-     use { 'neovim/nvim-lspconfig' }
-     use { 'nvim-lua/completion-nvim' }
+    use {'neoclide/coc.nvim', branch = 'release'}
+
+    -- Reize mode 
+    use {'sedm0784/vim-resize-mode'}
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
