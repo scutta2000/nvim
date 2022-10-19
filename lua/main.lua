@@ -117,7 +117,7 @@ function M.setup()
       tag = '0.1.0',
       requires = { {'nvim-lua/plenary.nvim'} },
       config = function ()
-        require('telescope').setup()
+        require('telescope').setup({defaults = { file_ignore_patterns = { "node_modules", ".git/"}}})
       end,
     }
 
@@ -209,8 +209,10 @@ function M.setup()
     }
 
      -- LSP and completion
-     use { 'neovim/nvim-lspconfig' }
-     use { 'nvim-lua/completion-nvim' }
+    use {'neoclide/coc.nvim', branch = 'release'}
+
+    -- Reize mode 
+    use {'sedm0784/vim-resize-mode'}
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"

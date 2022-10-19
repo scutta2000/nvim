@@ -20,12 +20,19 @@ function M.setup()
  
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
-    ["q"] = { "<cmd>q!<CR>", "Quit" },
+    ["q"] = { "<cmd>bd<CR>", "Quit" },
  
     b = {
       name = "Buffer",
       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
+    },
+
+    l = {
+      name = "Language protocol",
+      f = {"<Plug>(coc-codeaction)", "Fix"},
+      j = {"<Plug>(coc-definition)", "Jump to definition"}, 
+      p = {":CocCommand prettier.formatFile<Cr>", "Prettier format"}
     },
  
     z = {
@@ -44,7 +51,8 @@ function M.setup()
 
     o = {
       name = "Open",
-      f = {"<cmd>Telescope find_files<cr>", "File"},
+      f = {"<cmd>Telescope find_files hidden=true no-ignore-vcs=true <cr>", "File"},
+      F = {"<cmd>Telescope live_grep <cr>", "File"},
       t = { "<cmd>NvimTreeToggle<cr>", "File tree" },
       b = {"<cmd>Telescope buffers<cr>", "Buffers"},
     },
