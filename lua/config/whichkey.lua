@@ -20,7 +20,8 @@ function M.setup()
  
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
-    ["q"] = { "<cmd>bd<CR>", "Quit" },
+    ["q"] = { "<cmd>q!<CR>", "Quit" },
+    ["f"] = {"<cmd>Telescope live_grep <cr>", "File"},
  
     b = {
       name = "Buffer",
