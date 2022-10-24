@@ -21,7 +21,6 @@ function M.setup()
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
-    ["f"] = {"<cmd>Telescope live_grep <cr>", "File"},
  
     b = {
       name = "Buffer",
@@ -52,7 +51,7 @@ function M.setup()
 
     o = {
       name = "Open",
-      f = {"<cmd>Telescope find_files hidden=true no-ignore-vcs=true <cr>", "File"},
+      f = {"<cmd>Telescope find_files <cr>", "File"},
       F = {"<cmd>Telescope live_grep <cr>", "File"},
       t = { "<cmd>NvimTreeToggle<cr>", "File tree" },
       b = {"<cmd>Telescope buffers<cr>", "Buffers"},
