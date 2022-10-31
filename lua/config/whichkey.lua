@@ -32,7 +32,8 @@ function M.setup()
       name = "Language protocol",
       f = {"<Plug>(coc-codeaction)", "Fix"},
       j = {"<Plug>(coc-definition)", "Jump to definition"}, 
-      p = {":CocCommand prettier.formatFile<Cr>", "Prettier format"}
+      p = {":CocCommand prettier.formatFile<Cr>", "Prettier format"},
+      i = {":CocCommand tsserver.organizeImports<Cr>", "Organize imports"},
     },
  
     z = {
