@@ -214,6 +214,23 @@ function M.setup()
     -- Reize mode 
     use {'sedm0784/vim-resize-mode'}
 
+    -- Code folding
+    use {
+      "kevinhwang91/nvim-ufo",
+      opt = true,
+      event = { "BufReadPre" },
+      wants = { "promise-async" },
+      requires = "kevinhwang91/promise-async",
+      config = function()
+        require("ufo").setup()
+        
+        vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+        vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+      end,
+    }
+
+    -- Gid diff
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
       require("packer").sync()

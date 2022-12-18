@@ -34,6 +34,7 @@ function M.setup()
       j = {"<Plug>(coc-definition)", "Jump to definition"}, 
       p = {":CocCommand prettier.formatFile<Cr>", "Prettier format"},
       i = {":CocCommand tsserver.organizeImports<Cr>", "Organize imports"},
+      r = {"<Plug>(coc-rename)", "Rename symbol"}
     },
  
     z = {
@@ -48,6 +49,7 @@ function M.setup()
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
+      d = { "<cmd>DiffviewOpen<CR>", "Diff" },
     },
 
     o = {

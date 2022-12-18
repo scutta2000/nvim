@@ -23,6 +23,11 @@ opt.scrolloff = 16 --Always keep at least n line above and below cursor
 opt.timeoutlen = 300 --Time in ms to wait for a mapped sequence to complete
 opt.expandtab = true --Spaces instead of tabs
 opt.shiftwidth = 2 --Number of spaces in indentation
+-- Code folding
+opt.foldlevel = 99
+opt.foldlevelstart = -1
+opt.foldenable = true
+--
 
 -- Highlight on yank
 vim.cmd [[
