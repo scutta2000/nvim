@@ -2,13 +2,13 @@ local M = {}
 
 function M.setup()
   local whichkey = require "which-key"
- 
+
   local conf = { window = {
-      border = "single", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-    },
+    border = "single", -- none, single, double, shadow
+    position = "bottom", -- bottom, top
+  },
   }
- 
+
   local opts = {
     mode = "n", -- Normal mode
     prefix = "<leader>",
@@ -17,11 +17,11 @@ function M.setup()
     noremap = true, -- use `noremap` when creating keymaps
     nowait = false, -- use `nowait` when creating keymaps
   }
- 
+
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
- 
+
     b = {
       name = "Buffer",
       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
@@ -30,13 +30,13 @@ function M.setup()
 
     l = {
       name = "Language protocol",
-      f = {"<Plug>(coc-codeaction)", "Fix"},
-      j = {"<Plug>(coc-definition)", "Jump to definition"}, 
-      p = {":CocCommand prettier.formatFile<Cr>", "Prettier format"},
-      i = {":CocCommand tsserver.organizeImports<Cr>", "Organize imports"},
-      r = {"<Plug>(coc-rename)", "Rename symbol"}
+      f = { "<Plug>(coc-codeaction)", "Fix" },
+      j = { "<Plug>(coc-definition)", "Jump to definition" },
+      p = {":LspZeroFormat<Cr>", "Format code"},
+      i = {":OrganizeImports<Cr>", "Organize imports"},
+      r = { "<Plug>(coc-rename)", "Rename symbol" }
     },
- 
+
     z = {
       name = "Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -45,7 +45,7 @@ function M.setup()
       S = { "<cmd>PackerStatus<cr>", "Status" },
       u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
- 
+
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
@@ -54,13 +54,13 @@ function M.setup()
 
     o = {
       name = "Open",
-      f = {"<cmd>Telescope find_files <cr>", "File"},
-      F = {"<cmd>Telescope live_grep <cr>", "File"},
+      f = { "<cmd>Telescope find_files <cr>", "File" },
+      F = { "<cmd>Telescope live_grep <cr>", "File" },
       t = { "<cmd>NvimTreeToggle<cr>", "File tree" },
-      b = {"<cmd>Telescope buffers<cr>", "Buffers"},
+      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     },
   }
- 
+
   whichkey.setup(conf)
   whichkey.register(mappings, opts)
 end

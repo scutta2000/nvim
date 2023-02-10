@@ -10,7 +10,7 @@ function M.setup()
       enable = true,
       threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
     },
-    
+
     display = {
       open_fn = function()
         return require("packer.util").float { border = "rounded" }
@@ -45,8 +45,14 @@ function M.setup()
     use {
       "sainnhe/everforest",
       config = function()
-        vim.cmd "colorscheme everforest"
+        --vim.cmd "colorscheme everforest"
       end,
+    }
+    use {
+      "AlexvZyl/nordic.nvim",
+      config = function()
+        vim.cmd "colorscheme nordic"
+      end
     }
 
     -- Startup screen
@@ -66,14 +72,14 @@ function M.setup()
       end,
     }
 
-   --WhichKey
-   use {
-     "folke/which-key.nvim",
-     config = function()
-       require("config.whichkey").setup()
-     end,
-   }
-   
+    --WhichKey
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("config.whichkey").setup()
+      end,
+    }
+
     --Better icons
     use {
       "kyazdani42/nvim-web-devicons",
@@ -88,11 +94,11 @@ function M.setup()
       "nvim-lualine/lualine.nvim",
       event = "VimEnter",
       config = function()
-       require("config.lualine").setup()
+        require("config.lualine").setup()
       end,
       requires = { "nvim-web-devicons" },
     }
-    
+
     --See scope
     use {
       "SmiteshP/nvim-navic",
@@ -115,22 +121,32 @@ function M.setup()
     use {
       'nvim-telescope/telescope.nvim',
       tag = '0.1.0',
-      requires = { {'nvim-lua/plenary.nvim'} },
-      config = function ()
-        require('telescope').setup({defaults = { file_ignore_patterns = { "node_modules", ".git/"}}})
+      requires = { { 'nvim-lua/plenary.nvim' } },
+      config = function()
+        require('telescope').setup({
+          defaults = {
+            file_ignore_patterns = { "node_modules", ".git/" },
+          },
+          pickers = {
+            find_files = {
+              hidden = true,
+              find_command = {"rg", "--files", "--no-ignore"},
+            },
+          },
+        })
       end,
     }
 
     --File tree
     use {
-     "kyazdani42/nvim-tree.lua",
-     requires = {
-       "kyazdani42/nvim-web-devicons",
-     },
-     cmd = { "NvimTreeToggle", "NvimTreeClose" },
-       config = function()
-         require("config.nvimtree").setup()
-       end,
+      "kyazdani42/nvim-tree.lua",
+      requires = {
+        "kyazdani42/nvim-web-devicons",
+      },
+      cmd = { "NvimTreeToggle", "NvimTreeClose" },
+      config = function()
+        require("config.nvimtree").setup()
+      end,
     }
 
     --Leap
@@ -141,51 +157,6 @@ function M.setup()
       end,
     }
 
-    -- Completion
-    use {
-      "ms-jpq/coq_nvim",
-      branch = "coq",
-      event = "InsertEnter",
-      opt = true,
-      run = ":COQdeps",
-      config = function()
-        require("config.coq").setup()
-      end,
-      requires = {
-        { "ms-jpq/coq.artifacts", branch = "artifacts" },
-        { "ms-jpq/coq.thirdparty", branch = "3p", module = "coq_3p" },
-      },
-      disable = false,
-    }
-    use {
-      "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
-      opt = true,
-      config = function()
-        require("config.cmp").setup()
-      end,
-      wants = { "LuaSnip" },
-      requires = {
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-nvim-lua",
-        "ray-x/cmp-treesitter",
-        "hrsh7th/cmp-cmdline",
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-calc",
-        "f3fora/cmp-spell",
-        "hrsh7th/cmp-emoji",
-        {
-          "L3MON4D3/LuaSnip",
-          wants = "friendly-snippets",
-          config = function()
-            require("config.luasnip").setup()
-          end,
-        },
-        "rafamadriz/friendly-snippets",
-        disable = false,
-      },
-    }
 
     -- Auto pairs
     use {
@@ -208,11 +179,41 @@ function M.setup()
       end,
     }
 
-     -- LSP and completion
-    use {'neoclide/coc.nvim', branch = 'release'}
+    -- LSP and completion
+    use {
+      'VonHeikemen/lsp-zero.nvim',
+      requires = {
+        -- LSP Support
+        { 'neovim/nvim-lspconfig' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
+        -- Autocompletion
+        { 'hrsh7th/nvim-cmp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        -- Snippets
+        { 'L3MON4D3/LuaSnip' },
+        { 'rafamadriz/friendly-snippets' },
+      }
+    }
 
-    -- Reize mode 
-    use {'sedm0784/vim-resize-mode'}
+    ---Prettier
+    use {
+      'MunifTanjim/prettier.nvim',
+      requires = {
+        { 'jose-elias-alvarez/null-ls.nvim' },
+        { 'neovim/nvim-lspconfig' }
+      },
+      congit = function()
+        require("prettier").setup()
+      end
+    }
+
+    -- Reize mode
+    use { 'sedm0784/vim-resize-mode' }
 
     -- Code folding
     use {
@@ -223,7 +224,7 @@ function M.setup()
       requires = "kevinhwang91/promise-async",
       config = function()
         require("ufo").setup()
-        
+
         vim.keymap.set("n", "zR", require("ufo").openAllFolds)
         vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
       end,
