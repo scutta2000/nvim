@@ -205,7 +205,7 @@ function M.setup()
         { 'rafamadriz/friendly-snippets' },
       },
       config = function()
-        require("_lsp-zero").setup()
+        require("config.lsp-zero").setup()
       end
     }
 
@@ -217,7 +217,7 @@ function M.setup()
         { 'neovim/nvim-lspconfig' }
       },
       congit = function()
-        require("prettier").setup()
+        require("config.prettier").setup()
       end
     }
 
