@@ -10,7 +10,6 @@ function M.setup()
       enable = true,
       threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
     },
-
     display = {
       open_fn = function()
         return require("packer.util").float { border = "rounded" }
@@ -71,6 +70,13 @@ function M.setup()
         require("config.neogit").setup()
       end,
     }
+    use { "tpope/vim-fugitive" }
+    -- Gif diff
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    if packer_bootstrap then
+      print "Restart Neovim required after installation!"
+      require("packer").sync()
+    end
 
     --WhichKey
     use {
@@ -130,7 +136,7 @@ function M.setup()
           pickers = {
             find_files = {
               hidden = true,
-              find_command = {"rg", "--files", "--no-ignore"},
+              --find_command = {"rg", "--no-ignore"}
             },
           },
         })
@@ -197,7 +203,10 @@ function M.setup()
         -- Snippets
         { 'L3MON4D3/LuaSnip' },
         { 'rafamadriz/friendly-snippets' },
-      }
+      },
+      config = function()
+        require("_lsp-zero").setup()
+      end
     }
 
     ---Prettier
@@ -229,13 +238,6 @@ function M.setup()
         vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
       end,
     }
-
-    -- Gid diff
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-    if packer_bootstrap then
-      print "Restart Neovim required after installation!"
-      require("packer").sync()
-    end
   end
 
   packer_init()

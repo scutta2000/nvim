@@ -24,7 +24,6 @@ lsp.configure('tsserver', {
 lsp.ensure_installed({
   'tsserver',
   'eslint',
-  'sumneko_lua',
 })
 
 lsp.setup()
