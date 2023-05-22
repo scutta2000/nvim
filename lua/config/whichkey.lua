@@ -57,6 +57,7 @@ function M.setup()
       f = { "<cmd>Telescope find_files <cr>", "File" },
       F = { "<cmd>Telescope live_grep <cr>", "File" },
       t = { "<cmd>NvimTreeToggle<cr>", "File tree" },
+      T = { "<cmd>NvimTreeFindFile<cr>", "File tree" },
       b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     },
   }
