@@ -64,7 +64,7 @@ function M.setup()
 
     -- Git
     use {
-      "TimUntersberger/neogit",
+      "NeogitOrg/neogit",
       requires = "nvim-lua/plenary.nvim",
       config = function()
         require("config.neogit").setup()
@@ -191,8 +191,6 @@ function M.setup()
       requires = {
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
-        { 'williamboman/mason.nvim' },
-        { 'williamboman/mason-lspconfig.nvim' },
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-buffer' },
@@ -238,6 +236,16 @@ function M.setup()
         vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
       end,
     }
+
+
+    -- Sticky function def
+    use {
+      'nvim-treesitter/nvim-treesitter-context',
+      requires = {
+        { 'nvim-treesitter/nvim-treesitter' }
+      }
+    }
+
   end
 
   packer_init()

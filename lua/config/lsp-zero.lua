@@ -3,6 +3,15 @@ local M = {}
 function M.setup()
   local lsp = require("lsp-zero")
 
+  lsp.setup_servers({
+    'tsserver',
+    'eslint',
+    'clangd',
+    'nil_ls',
+    'tailwindcss',
+    'ocamllsp'
+  })
+
   local function organize_imports()
     local params = {
       command = "_typescript.organizeImports",
@@ -21,14 +30,23 @@ function M.setup()
         description = "Organize Imports"
       }
     }
+
   })
 
-
-  lsp.ensure_installed({
-    'tsserver',
-    'eslint',
-  })
   lsp.nvim_workspace()
+
+
+
+  local cmp = require('cmp')
+
+  cmp.setup({
+    mapping = {
+      ['<CR>'] = cmp.mapping.confirm({ select = false }),
+      ['<C-j>'] = cmp.mapping.select_next_item(),
+      ['<C-k>'] = cmp.mapping.select_prev_item(),
+    }
+  })
+
 
   lsp.setup()
 end
