@@ -30,11 +30,8 @@ function M.setup()
 
     l = {
       name = "Language protocol",
-      f = { "<Plug>(coc-codeaction)", "Fix" },
-      j = { "<Plug>(coc-definition)", "Jump to definition" },
       p = {":LspZeroFormat<Cr>", "Format code"},
       i = {":OrganizeImports<Cr>", "Organize imports"},
-      r = { "<Plug>(coc-rename)", "Rename symbol" }
     },
 
     z = {

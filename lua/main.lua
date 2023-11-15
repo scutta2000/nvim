@@ -126,7 +126,7 @@ function M.setup()
     --Telescope
     use {
       'nvim-telescope/telescope.nvim',
-      tag = '0.1.0',
+      tag = '0.1.4',
       requires = { { 'nvim-lua/plenary.nvim' } },
       config = function()
         require('telescope').setup({
@@ -154,15 +154,6 @@ function M.setup()
         require("config.nvimtree").setup()
       end,
     }
-
-    --Leap
-    use {
-      "ggandor/leap.nvim",
-      config = function()
-        require("leap").set_default_keymaps(true)
-      end,
-    }
-
 
     -- Auto pairs
     use {
@@ -245,7 +236,6 @@ function M.setup()
         { 'nvim-treesitter/nvim-treesitter' }
       }
     }
-
   end
 
   packer_init()

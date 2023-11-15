@@ -44,8 +44,3 @@ keymap("v", "<ESC>", "v", default_opts)
 --Add new line
 keymap("n", "<C-j>", "o<ESC>", default_opts)
 
---Mouse hover
-keymap("n", "<C-Space>", ":call CocActionAsync('doHover')<cr>", default_opts)
-keymap("n", "<C-k>", ":call CocActionAsync('doHover')<cr>", default_opts)
-keymap("i", "<C-k>", ":call CocActionAsync('doHover')<cr>", default_opts)
-
