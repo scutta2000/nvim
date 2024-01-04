@@ -9,7 +9,8 @@ function M.setup()
     'clangd',
     'nil_ls',
     'tailwindcss',
-    'ocamllsp'
+    'ocamllsp',
+    'pyright',
   })
 
   local function organize_imports()

@@ -205,7 +205,7 @@ function M.setup()
         { 'jose-elias-alvarez/null-ls.nvim' },
         { 'neovim/nvim-lspconfig' }
       },
-      congit = function()
+      config = function()
         require("config.prettier").setup()
       end
     }
@@ -236,6 +236,7 @@ function M.setup()
         { 'nvim-treesitter/nvim-treesitter' }
       }
     }
+
   end
 
   packer_init()
